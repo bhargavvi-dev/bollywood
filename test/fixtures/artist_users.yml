@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  artist_id: 
+  user_id: 
+  is_admin: false
+
+two:
+  artist_id: 
+  user_id: 
+  is_admin: false
