@@ -1,0 +1,33 @@
+<%= form_for(@content_item ,url: admin_content_items_path) do |f| %>
+<% if @content_item.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@content_item.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @content_item.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+   <table class="table table-hover">
+    
+    <tr>
+        <td><%= f.label :Title %></td>
+        <td><%= f.text_field :title %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :description %></td>
+        <td><%= f.text_field :description %></td>
+      </tr>
+
+      <tr>
+         <td rowspan="2" align="center"><%= f.submit %></td>
+    </tr>
+   </table>
+
+<%end%>

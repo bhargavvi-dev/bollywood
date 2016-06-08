@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160603070039) do
+ActiveRecord::Schema.define(version: 20160607070954) do
 
   create_table "artist_users", force: :cascade do |t|
     t.integer  "artist_id"
@@ -35,6 +35,42 @@ ActiveRecord::Schema.define(version: 20160603070039) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "content_item_resources", force: :cascade do |t|
+    t.integer  "content_item_id"
+    t.integer  "content_resource_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "content_item_resources", ["content_item_id"], name: "index_content_item_resources_on_content_item_id"
+  add_index "content_item_resources", ["content_resource_id"], name: "index_content_item_resources_on_content_resource_id"
+
+  create_table "content_items", force: :cascade do |t|
+    t.integer  "data_item_id"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "content_items", ["data_item_id"], name: "index_content_items_on_data_item_id"
+
+  create_table "content_resources", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "data_items", force: :cascade do |t|
+    t.integer  "artist_id"
+    t.string   "type"
+    t.string   "title"
+    t.boolean  "is_active",  default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "data_items", ["artist_id"], name: "index_data_items_on_artist_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

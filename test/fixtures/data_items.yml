@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  artist_id: 
+  type: 
+  title: MyString
+  is_active: false
+
+two:
+  artist_id: 
+  type: 
+  title: MyString
+  is_active: false

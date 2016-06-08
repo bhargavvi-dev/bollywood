@@ -1,0 +1,26 @@
+<h1>Member List</h1>
+<table class="table table-hover" id="table_id">
+<thead>
+  <tr>
+    <th>Email Id</th>
+  </tr>
+ </thead>
+ <tbody>
+  <% @members.each do |member| %>
+     <tr>
+      <td><%= member.user.email%></td>
+      <td><%= link_to image_tag("/edit.png"), edit_admin_member_path(member) %></td>
+      <td><%= link_to image_tag("/delete.png"), admin_member_path(member),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= link_to 'Add New Member',  new_admin_member_path %>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#table_id').DataTable();
+});
+</script>

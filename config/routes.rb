@@ -1,21 +1,42 @@
 Rails.application.routes.draw do
+  get 'member/new'
   get 'atrist_users/index'
   get 'artists/index'
   get 'admin_layout/index'
   get 'welcome/index'
 
   
-  devise_for :users
-  resources :artists
+   devise_for :users, controllers: {sessions: "sessions",registration: "members"}
+   devise_scope :user do
+    get "sign_in", to: "devise/sessions#new"
+    get "sign_out", to: "devise/sessions#destroy"
+   end
+  
+  root'artists#index'
+ 
+ namespace :admin do
+    resources :members
+    resources :data_items do
+      resources :content_items
+    
+  end
+  end 
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'artists#index'
-  get '/admin' => 'admin_layout#index'
-  get '/artists/:id(.:format)' => 'artists#show'
-  get  '/artists(.:format)'   => 'artists#index'
-  delete '/articles/:id(.:format)' => 'artists#destroy'
+   
+  get '/admin' => 'admin/admin_layout#index'
+  get "/sign_up" => "members#new"
+  
+
+  # get '/admin/data_items' => 'admin/data_items#index'
+  # get '/admin/data_items/new' => 'admin/data_items#new'
+  # get '/admin/data_items/:id(.:format)/edit' => 'admin/data_items#edit'
+  # get '/admin/data_items/:id(.:format)' => 'admin/data_items#show'
+  # delete '/admin/data_items/:id(.:format)' => 'admin/data_items#destroy'
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
