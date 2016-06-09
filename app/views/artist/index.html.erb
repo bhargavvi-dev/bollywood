@@ -1,0 +1,31 @@
+<h1>Artist List</h1>
+<table class="table table-hover" id="tbl_id">
+<thead>
+  <tr class="info">
+   
+    <th>Real Name</th>
+    <th>Nick Name</th>
+    <th>Address</th>
+    <th>DOB</th>
+    <th>Hometown</th>
+    <th>Religion</th>
+    <th>Nationality</th>
+  </tr>
+  </thead>
+ <tbody>
+  <% @artists.each do |artist| %>
+    <tr class="active">
+      <%# link_to artist.real_name, data_items_path+"/"+artist.id.to_s  %>
+
+      <td><%= link_to artist.real_name, artist_data_items_path(artist.id) %></td>
+      <td><%= artist.nick_name %></td>
+      <td><%= artist.address %></td>
+      <td><%= artist.dob %></td>
+      <td><%= artist.hometown %></td>
+      <td><%= artist.religion %></td>
+      <td><%= artist.nationality %></td>
+     													
+    </tr>
+  <% end %>
+  </tbody>
+</table>

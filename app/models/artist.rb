@@ -1,10 +1,4 @@
 class Artist < ActiveRecord::Base
-	has_many :artist_users
-	has_many :users, :through => :artist_users
-	#has_many :data_items
+	has_many :data_items
 
-	validates :real_name, presence: true
-	validates :address, presence: true
-	validates :dob, presence: true
-	validates :hometown, presence: true
 end

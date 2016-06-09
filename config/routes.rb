@@ -1,21 +1,24 @@
 Rails.application.routes.draw do
-  get 'atrist_users/index'
-  get 'artists/index'
-  get 'admin_layout/index'
-  get 'welcome/index'
 
-  
-  devise_for :users
-  resources :artists
+  get 'content_resources/new'
+
+  get 'content_resources/create'
+
+  get 'content_resources/index'
+
+  resources :artists do
+     resources :data_items do
+       resources :content_items
+  end
+  end     
+
+  resources :content_resources
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'artists#index'
-  get '/admin' => 'admin_layout#index'
-  get '/artists/:id(.:format)' => 'artists#show'
-  get  '/artists(.:format)'   => 'artists#index'
-  delete '/articles/:id(.:format)' => 'artists#destroy'
+   root 'artist#index'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

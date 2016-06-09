@@ -7,20 +7,10 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-# create user
-user = User.find_by_email("ptlbhargav93@gmail.com")
-unless user
- user = User.create(email: 'ptlbhargav93@gmail.com', password: 'admin@123')
-end
 
-# create artist
-artist = Artist.find_by_real_name("Shahrukh Khan")
+artist = Artist.find_by_real_name("Amitabh Bacchan")
 unless artist
-	artist = Artist.create(real_name: 'Shahrukh Khan', nick_name: 'SRK',address: 'Mannat, Band Stand Mumbai', dob:'1962-06-15',hometown: 'Delhi', religion:'Islamic', nationality:'Indian')
+artist = Artist.create(real_name: 'Amitabh Bacchan', nick_name: 'Big B',address: 'Jalsa, Mumbai', dob:'1952-06-15',hometown: 'UP', religion:'Hindu', nationality:'Indian')
 end
 
-# create artist user
-artist_user = ArtistUser.find_by_artist_id_and_user_id(artist.id, user.id)
-unless artist_user
-  artist_user = ArtistUser.create(:artist_id => artist.id, :user_id => user.id, :is_admin => true)
-end
+

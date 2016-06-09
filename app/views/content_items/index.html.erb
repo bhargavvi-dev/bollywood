@@ -1,0 +1,21 @@
+<h1>Content Item List</h1>
+
+<table class="table table-hover">
+   <tr class="info">
+	    <th>Title</th>
+	    <th>Description</th>
+      <th>Photo</th>
+	 </tr>
+
+   <% @content_items.each do |c| %>
+
+   <tr class="active">
+      
+      <td><%= c.title %></td>
+      <td><%= c.description %></td>
+      <% if c.content_resource %>
+        <td><%= image_tag c.content_resource.photo.url(:thumb) %></td>
+      <% end %>
+   </tr>
+  <% end %>
+</table>
