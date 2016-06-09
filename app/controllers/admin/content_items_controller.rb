@@ -1,8 +1,11 @@
 class Admin::ContentItemsController < ApplicationController
 
  	def index
-    artist_id = current_user.artists.first
-    @content_items = ContentItem.all.where(:artist_id => artist_id)
+    #@content_items = ContentItem.all #where(:artist_id => artist_id)
+    #@data_item = DataItem.find_by(params[:data_item_id])
+    @data_item = DataItem.find_by(id:params[:data_item_id])
+    
+    @content_items = @data_item.content_items
 	end
 
 	def new
@@ -14,18 +17,15 @@ class Admin::ContentItemsController < ApplicationController
   end
 
   def show
-  	
   	@content_item = ContentItem.find(params[:id])
   
   end
 
   def create
-    artist = current_user.artists.last
-
-    @content_item = artist.content_items.new(content_item_params)
-  
+  	@data_item = DataItem.find_by(id:params[:data_item_id])
+    @content_item =@data_item.content_items.new(content_item_params)
     if @content_item.save
-      redirect_to admin_content_item_path(@content_item)
+      redirect_to admin_data_item_content_items_path(@data_item)
     else
       render 'new'  
     end

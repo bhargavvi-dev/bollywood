@@ -9,7 +9,8 @@ class Admin::MembersController < ApplicationController
   	@member = User.new
  end
  def edit
-  	@member = User.find(params[:id])
+  	@artist_user = ArtistUser.find_by(id:params[:id])
+    @member=@artist_user.user
   end
 
  def create

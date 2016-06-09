@@ -16,7 +16,6 @@ class Admin::DataItemsController <  ApplicationController
   def show
   	
   	@data_item = DataItem.find(params[:id])
-  
   end
 
   def create
@@ -35,7 +34,7 @@ class Admin::DataItemsController <  ApplicationController
   	@data_item = DataItem.find(params[:id])
  
   	if @data_item.update(data_item_params)
-    	redirect_to @data_item
+    	redirect_to admin_data_item_path(@data_item)
   	else
     	render 'edit'
   	end
