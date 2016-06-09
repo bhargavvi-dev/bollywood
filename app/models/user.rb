@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   	has_many :artist_users,:dependent => :destroy
     has_many :artists, :through => :artist_users
 
+    validates_presence_of :email, :password
+
     
    
 	# after_save :set_artist_user

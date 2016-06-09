@@ -15,11 +15,13 @@ Rails.application.routes.draw do
   root'artists#index'
  
  namespace :admin do
+  resources :artists
     resources :members
     resources :data_items do
-      resources :content_items
-    
+      resources :content_items do
+        resources :content_resources
   end
+end
   end 
   
   # The priority is based upon order of creation: first created -> highest priority.
@@ -29,7 +31,7 @@ Rails.application.routes.draw do
    
   get '/admin' => 'admin/admin_layout#index'
   get "/sign_up" => "members#new"
-  
+   
 
   # get '/admin/data_items' => 'admin/data_items#index'
   # get '/admin/data_items/new' => 'admin/data_items#new'

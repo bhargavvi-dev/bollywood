@@ -4,7 +4,6 @@ class Admin::ContentItemsController < ApplicationController
     #@content_items = ContentItem.all #where(:artist_id => artist_id)
     #@data_item = DataItem.find_by(params[:data_item_id])
     @data_item = DataItem.find_by(id:params[:data_item_id])
-    
     @content_items = @data_item.content_items
 	end
 
@@ -26,6 +25,7 @@ class Admin::ContentItemsController < ApplicationController
     @content_item =@data_item.content_items.new(content_item_params)
     if @content_item.save
       redirect_to admin_data_item_content_items_path(@data_item)
+      content_item_resource = ContentItemResource.create(:content_items_id => artist, :content_resource_id => member.id)
     else
       render 'new'  
     end
@@ -44,7 +44,7 @@ class Admin::ContentItemsController < ApplicationController
   	@content_item = ContentItem.find(params[:id])
   	@content_item.destroy
  
-  	redirect_to admin_content_item_path
+  	redirect_to admin_data_item_content_items_path										
 	end
 
   private

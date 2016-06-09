@@ -1,6 +1,6 @@
 class ContentItem < ActiveRecord::Base
   belongs_to :data_item
 
-  has_many :content_item_resources
-  has_many :content_resources, :through => :content_item_resources
+  has_one :content_item_resource
+	has_one :content_resource, :through => :content_item_resource
 end

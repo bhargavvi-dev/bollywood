@@ -8,7 +8,7 @@ class  SessionsController < Devise::SessionsController
  	 if user.artist_users.first.is_admin?
  	    super
 	else
- 	 	flash[:notice] = "do not have access."
+ 	 	flash[:error] = "do not have access."
  	 	redirect_to root_path
  	end
  end

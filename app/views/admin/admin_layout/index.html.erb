@@ -1,7 +1,7 @@
 
-<%= link_to 'List Data Items',  admin_data_items_path %></br>
-<%= link_to 'Add Member',  new_admin_member_path %></br>
-<%= link_to 'List Member',  admin_members_path %>
 
+<%= button_to 'List Data Items',  admin_data_items_path,:method => :get,:class => "btn btn-primary" %></br>
+<%= button_to 'Add Member',  new_admin_member_path, :method => :get,:class => "btn btn-primary" %></br>
+<%= button_to 'List Member',  admin_members_path, :method => :get,:class => "btn btn-primary" %>
 
 

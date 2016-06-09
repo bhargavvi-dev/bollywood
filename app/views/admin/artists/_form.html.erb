@@ -1,4 +1,4 @@
-<%= form_for @artist do |f| %>
+<%= form_for(@artist ,url: admin_artists_path) do |f| %>
  <% if @artist.errors.any? %>
     <div id="error_explanation">
       <h2>

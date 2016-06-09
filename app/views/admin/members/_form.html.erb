@@ -1,4 +1,5 @@
 <%= form_for(@member ,url: admin_members_path) do |f| %>
+<%= devise_error_messages! %>
 
   <div class="field">
     <%= f.label :email %><br />

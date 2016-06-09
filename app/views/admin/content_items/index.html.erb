@@ -1,4 +1,4 @@
-<h1>Content Item List</h1>
+<h1>Content :- <%= @data_item.title %></h1>
 <table class="table table-hover" id="table_id">
 <thead>
    <tr>
@@ -7,11 +7,16 @@
 	 </tr>
 </thead>
 <tbody>
-   <% @content_items.each do |item| %>
+   <% @content_items.each do |content_item| %>
    <tr>
       
-      <td><%= item.title%></td>
-      <td><%= item.description %></td>
+      <td><%= link_to content_item.title,admin_data_item_content_item_content_resources_path(@data_item.id,content_item.id)%></td>
+      <td><%= content_item.description %></td>
+      <td><%= link_to image_tag("/show.jpg"), admin_data_item_content_item_path(@data_item.id,content_item.id) %></td>
+      <td><%= link_to image_tag("/edit.png"), edit_admin_data_item_content_item_path(@data_item.id,content_item.id) %></td>
+      <td><%= link_to image_tag("/delete.png"),admin_data_item_content_item_path(@data_item.id,content_item.id),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
   </tbody>
