@@ -7,6 +7,7 @@ class Admin::ContentItemsController < ApplicationController
     @content_items = @data_item.content_items
 	end
 
+
 	def new
     @content_item = ContentItem.new
   end
@@ -24,8 +25,8 @@ class Admin::ContentItemsController < ApplicationController
   	@data_item = DataItem.find_by(id:params[:data_item_id])
     @content_item =@data_item.content_items.new(content_item_params)
     if @content_item.save
+    	 flash[:success] = "Content Item Added to #{@data_item.title}"
       redirect_to admin_data_item_content_items_path(@data_item)
-      content_item_resource = ContentItemResource.create(:content_items_id => artist, :content_resource_id => member.id)
     else
       render 'new'  
     end

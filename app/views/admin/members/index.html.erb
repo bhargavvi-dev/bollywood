@@ -3,6 +3,9 @@
 <thead>
   <tr>
     <th>Email Id</th>
+    <th>Show</th>
+    <th>Edit</th>
+    <th>Delete</th>
   </tr>
  </thead>
  <tbody>
@@ -17,10 +20,7 @@
   <% end %>
   </tbody>
 </table>
-<%= link_to 'Add New Member',  new_admin_member_path %>
+<%= link_to 'Add Member',  new_admin_member_path, :class => "btn btn-primary" %>
+<%= link_to 'BacK',  admin_path, :class => "btn btn-primary" %>
 
-<script type="text/javascript">
-$(document).ready(function(){
-    $('#table_id').DataTable();
-});
-</script>
+

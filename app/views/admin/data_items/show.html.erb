@@ -20,5 +20,5 @@
   <td><%= @data_item.is_active%></td>
 </tr>
 </table>
-<%= link_to 'Back', admin_data_items_path %>
-<%= link_to 'Edit', edit_admin_data_item_path(@data_item) %>
+<%= link_to 'Back', admin_data_items_path, :class => "btn btn-primary" %>
+<%= link_to 'Edit', edit_admin_data_item_path(@data_item), :class => "btn btn-primary" %>

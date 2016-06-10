@@ -1,10 +1,12 @@
 class Admin::MembersController < ApplicationController
+  
   before_filter :authenticate_user!
-    def index
     
+    def index
     artist_id = current_user.artists.first
     @members = ArtistUser.all.where(:artist_id => artist_id, :is_admin => false)
   end
+ 
  def new
   	@member = User.new
  end
@@ -17,7 +19,7 @@ class Admin::MembersController < ApplicationController
     
     @member = User.new(member_params)
     if @member.save
-      flash[:notice] = "member added successfully."
+      flash[:success] = "Member Added Successfully."
     	redirect_to admin_members_path
       artist = current_user.artists.ids.last
       member = User.last
@@ -40,7 +42,7 @@ class Admin::MembersController < ApplicationController
   def destroy
     @member = User.find(params[:id])
     @member.destroy
-    flash[:notice] = "destroy member successfully."
+    flash[:notice] = "Destroy Member successfully."
     redirect_to admin_members_path
   end
 

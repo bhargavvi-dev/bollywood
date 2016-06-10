@@ -8,6 +8,8 @@ class DataItem < ActiveRecord::Base
    scope :event, -> { where(type: 'Event') }
    scope :photo_gallery, -> { where(type: 'Photo_gallery') }
 
+   validates_presence_of :title
+
 
   class << self
     def types

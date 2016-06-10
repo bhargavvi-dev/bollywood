@@ -9,8 +9,11 @@
 	<tbody>
 	     <% @content_resources.each do |content_resource| %>
 	     <tr class="active">
-	          <td><%= image_tag content_resource.photo.url(:thumb) %></td>
+	          <td><%= image_tag content_resource.content_resource.photo.url(:thumb) %></td>
 	     </tr>
-	     <% end %>
+	     
+              <% end %>
 	</tbody>
 </table>
+<%= link_to 'New Content Resource',  new_admin_data_item_content_item_content_resource_path , :class => "btn btn-primary"%>
+<%= link_to 'Back',  :back , :class => "btn btn-primary"%>

@@ -1,17 +1,70 @@
+<!-- BEGIN LOGIN SECTION -->
+<section class="section-account">
+  <div class="img-backdrop"></div>
+  <div class="spacer"></div>
+  <div class="card contain-sm style-transparent">
+    <div class="card-body">
+      <div class="row">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+        <div class="col-sm-8 col-sm-offset-2">
+          <center><span class="text-lg text-bold text-primary"><%= t('login.login_to_your_account') %></span></center>
+          <br/><br/>
+          <% if alert.present? %>
+            <div class="alert alert-dismissible alert-danger">
+              <button class="close" data-dismiss="alert" type="button"> × </button>
+              <div><%= alert %></div>
+            </div>
+          <% end %>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+          <% if notice.present? %>
+            <div class="alert alert-dismissible alert-info">
+              <button class="close" data-dismiss="alert" type="button"> × </button>
+              <div><%= notice %></div>
+            </div>
+          <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
+          <div class="card">
+            <div class="card-body">
 
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form floating-label'}) do |f| %>
+                <div class="form-group <%= (resource.errors["email"].any? ? "has-error" : '') %>">
+                  <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: 'off', value: '' %>
+                  <%= f.label :email %>
+                  <% if resource.errors["email"].any? %>
+                    <p class="help-block errorMsg"><%= resource.errors["email"][0] %></p> 
+                  <% end %>
+                </div>
+                <div class="form-group <%= (resource.errors["password"].any? ? "has-error" : '') %>">
+                  <%= f.password_field :password, class: "form-control", autocomplete: "off", value: '' %>
+                  <%= f.label :password %>
+                  <p class="help-block">
+                    <%= link_to t('general.fogot_password'), forgot_password_path %>
+                  </p>
+                </div>
+                <br/>
+                <div class="row">
+                  <div class="col-xs-12 text-center">
+                      <%= f.submit "Login", class: 'btn btn-everyware btn-raised btn-block' %>
+                  </div><!--end .col -->
+                </div><!--end .row -->
+              <% end %>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 text-center">
+          <br><br>
+          <h3 class="text-light">
+            New to everyware?
+          </h3>
+          </div><!--end .col -->
+      </div><!--end .row -->
+      
+    </div><!--end .card-body -->
+  </div><!--end .card -->
+</section>
+<!-- END LOGIN SECTION -->

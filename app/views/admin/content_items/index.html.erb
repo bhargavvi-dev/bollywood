@@ -4,6 +4,10 @@
    <tr>
 	    <th>Title</th>
 	    <th>Description</th>
+      <th>Show</th>
+      <th>Edit</th>
+      <th>Delete</th>
+
 	 </tr>
 </thead>
 <tbody>
@@ -21,4 +25,5 @@
   <% end %>
   </tbody>
 </table>
-<%= link_to 'New Content Item',  new_admin_data_item_content_item_path %>
+<%= link_to 'New Content Item',  new_admin_data_item_content_item_path , :class => "btn btn-primary"%>
+<%= link_to 'Back', admin_data_items_path , :class => "btn btn-primary"%>

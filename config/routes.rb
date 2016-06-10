@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
-  get 'member/new'
-  get 'atrist_users/index'
-  get 'artists/index'
-  get 'admin_layout/index'
-  get 'welcome/index'
-
-  
-   devise_for :users, controllers: {sessions: "sessions",registration: "members"}
+ 
+   devise_for :users, controllers: {sessions: "sessions"}
    devise_scope :user do
     get "sign_in", to: "devise/sessions#new"
     get "sign_out", to: "devise/sessions#destroy"
@@ -20,8 +14,8 @@ Rails.application.routes.draw do
     resources :data_items do
       resources :content_items do
         resources :content_resources
-  end
-end
+      end
+    end
   end 
   
   # The priority is based upon order of creation: first created -> highest priority.

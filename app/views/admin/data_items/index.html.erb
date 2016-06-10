@@ -6,6 +6,9 @@
 	    <th>Title</th>
 	    <th>Type</th>
 	    <th>Is_active</th>
+      <th>Show</th>
+      <th>Edit</th>
+      <th>Delete</th>
    </tr>
 </thead>
 <tbody>
@@ -24,4 +27,5 @@
   <% end %>
   </tbody>
 </table>
-<%= link_to 'New Data Items',  new_admin_data_item_path %>
+<%= link_to 'New Data Items',  new_admin_data_item_path,:class => "btn btn-primary" %>
+<%= link_to 'Back',  admin_path,:class => "btn btn-primary" %>

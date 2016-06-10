@@ -24,6 +24,7 @@ class Admin::DataItemsController <  ApplicationController
     @data_item = artist.data_items.new(data_item_params)
   
     if @data_item.save
+      flash[:success] = "Data Item Added to #{artist.real_name}"
       redirect_to admin_data_item_path(@data_item)
     else
       render 'new'  
