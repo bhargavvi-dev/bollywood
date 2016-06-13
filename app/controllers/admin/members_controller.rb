@@ -2,7 +2,6 @@ class Admin::MembersController < ApplicationController
   
   before_filter :authenticate_user!
   before_action :set_artist_user, only: [:show, :edit, :update, :destroy]
-  after_action :add_artist_user, only: [:create]
     
  def index
     @members = current_artist.artist_users.where(:is_admin => false)
@@ -20,6 +19,7 @@ class Admin::MembersController < ApplicationController
   @member = User.new(member_params)
     if @member.save
       flash[:success] = "Member Added Successfully."
+      artist_user= ArtistUser.create(:artist_id => current_artist.id, :user_id => @member.id)
     	redirect_to admin_members_path
   	else
     	render 'new'
@@ -29,8 +29,8 @@ class Admin::MembersController < ApplicationController
  def update
     @member=@artist_user.user
     if @member.update(member_params)
-      flash[:notice] = "Member Updated"
-      redirect_to @member
+      flash[:notice] = "Member updated"
+      redirect_to admin_members_path
     else
       render 'edit'
     end
@@ -43,10 +43,6 @@ class Admin::MembersController < ApplicationController
   end
 
   private
-
-  def add_artist_user
-    artist_user= ArtistUser.create(:artist_id => current_artist.id, :user_id => @member.id)
-  end
 
   def set_artist_user
     @artist_user = ArtistUser.find(params[:id])

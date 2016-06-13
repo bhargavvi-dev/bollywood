@@ -1,4 +1,5 @@
-<%= form_for(@member ,url: admin_members_path) do |f| %>
+<%= form_for(@member, :url => (@member.new_record? ? admin_members_path : admin_member_path)) do |f| %>
+<%= devise_error_messages! %>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>

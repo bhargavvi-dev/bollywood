@@ -5,7 +5,7 @@ class Admin::DataItemsController <  ApplicationController
     if user_signed_in?   
     @data_items = current_artist.data_items
   else
-    redirect_to sign_in_path
+    redirect_to user_session_path
   end
 end
 

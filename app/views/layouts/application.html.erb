@@ -34,8 +34,9 @@
       </button>
       <%= link_to "Bollywood", root_path, class: "navbar-brand" %>
       <ul class="nav navbar-nav">
-      <li class="active"><%= link_to 'Show Data Items',  admin_data_items_path%></li>
-      <li><%= link_to 'Show Member',  admin_members_path%></li>
+      <li class="<%= 'active' if current_page?(admin_data_items_path) %>">
+      <%= link_to 'Show Data Items',  admin_data_items_path%></li>
+      <li class="<%= 'active' if current_page?(admin_members_path) %>"><%= link_to 'Show Member',  admin_members_path%></li>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

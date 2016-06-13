@@ -1,32 +1,27 @@
 Rails.application.routes.draw do
  
-   devise_for :users, controllers: {sessions: "sessions"}
-   devise_scope :user do
-    get "sign_in", to: "devise/sessions#new"
-    get "sign_out", to: "devise/sessions#destroy"
-   end
+  devise_for :users, controllers: {sessions: "users/sessions"}
+    devise_scope :user do
+  end
   
-  root'artists#index'
- 
- namespace :admin do
-  resources :artists
+  get '/admin' => 'admin/data_items#index'
+  
+  namespace :admin do
+    resources :artists
     resources :members
+
     resources :data_items do
       resources :content_items do
         resources :content_resources
       end
-    end
+    end    
   end 
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   
-  get '/admin' => 'admin/data_items#index'
-  get "/sign_up" => "members#new"
-   
-
+  
   # get '/admin/data_items' => 'admin/data_items#index'
   # get '/admin/data_items/new' => 'admin/data_items#new'
   # get '/admin/data_items/:id(.:format)/edit' => 'admin/data_items#edit'
@@ -81,4 +76,6 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  root'artists#index'
 end
