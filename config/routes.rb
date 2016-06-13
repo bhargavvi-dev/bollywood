@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
    
-  get '/admin' => 'admin/admin_layout#index'
+  get '/admin' => 'admin/data_items#index'
   get "/sign_up" => "members#new"
    
 

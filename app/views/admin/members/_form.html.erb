@@ -1,56 +1,23 @@
+<%= form_for(@member ,url: admin_members_path) do |f| %>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
 
-<div class="row">
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
 
-        <div class="col-sm-8 col-sm-offset-2">
-          <center><span class="text-lg text-bold text-primary"><%= t('login.add_new_member') %></span></center>
-          <br/><br/>
-          <% if alert.present? %>
-            <div class="alert alert-dismissible alert-danger">
-              <button class="close" data-dismiss="alert" type="button"> × </button>
-              <div><%= alert %></div>
-            </div>
-          <% end %>
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
 
-          <% if notice.present? %>
-            <div class="alert alert-dismissible alert-info">
-              <button class="close" data-dismiss="alert" type="button"> × </button>
-              <div><%= notice %></div>
-            </div>
-          <% end %>
-
-          <div class="card">
-            <div class="card-body">
-
-              <%= form_for(@member ,url: admin_members_path) do |f| %>
-                <div class="form-group <%= (@member.errors["email"].any? ? "has-error" : '') %>">
-                  <%= f.label :email %>
-                  <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: 'off', value: '' %>
-                </div>
-                <div class="form-group <%= (@member.errors["password"].any? ? "has-error" : '') %>">
-                  <%= f.label :password %>
-                  <%= f.password_field :password, class: "form-control", autocomplete: "off", value: '' %>
-                </div>
-                <div class="form-group <%= (@member.errors["password_confirmation"].any? ? "has-error" : '') %>">
-                  <%= f.label :password_confirmation %>
-                  <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "off", value: '' %>
-                </div>
-                <br/>
-                <div class="row">
-                  <div class="col-xs-12 text-center">
-                      <%= f.submit "Login", class: 'btn btn-raised btn-block' %>
-                  </div><!--end .col -->
-                </div><!--end .row -->
-              <% end %>
-
-            </div>
-          </div>
-
-        </div>
-      </div>
-  
-
-
-
-
-
-
+  <div class="actions">
+    <%= f.submit "Add Member" %>
+  </div>
+<% end %>

@@ -1,4 +1,4 @@
-<%= form_for(@content_item ,url: admin_data_item_content_items_path) do |f| %>
+<%= form_for([:admin, @data_item, @content_item]) do |f| %>
 <% if @content_item.errors.any? %>
     <div id="error_explanation">
       <h2>

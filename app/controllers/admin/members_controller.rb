@@ -1,52 +1,57 @@
 class Admin::MembersController < ApplicationController
   
   before_filter :authenticate_user!
+  before_action :set_artist_user, only: [:show, :edit, :update, :destroy]
+  after_action :add_artist_user, only: [:create]
     
-    def index
-    artist_id = current_user.artists.first
-    @members = ArtistUser.all.where(:artist_id => artist_id, :is_admin => false)
-  end
+ def index
+    @members = current_artist.artist_users.where(:is_admin => false)
+ end
  
  def new
   	@member = User.new
  end
+ 
  def edit
-  	@artist_user = ArtistUser.find_by(id:params[:id])
     @member=@artist_user.user
-  end
+ end
 
  def create
-    
-    @member = User.new(member_params)
+  @member = User.new(member_params)
     if @member.save
       flash[:success] = "Member Added Successfully."
     	redirect_to admin_members_path
-      artist = current_user.artists.ids.last
-      member = User.last
-      artist_user= ArtistUser.create(:artist_id => artist, :user_id => member.id)
   	else
     	render 'new'
   	end
  end  
- def show
- end	
- def update
-    @member = User.find(params[:id])
  
+ def update
+    @member=@artist_user.user
     if @member.update(member_params)
+      flash[:notice] = "Member Updated"
       redirect_to @member
     else
       render 'edit'
     end
   end
   def destroy
-    @member = User.find(params[:id])
+    @member=@artist_user.user
     @member.destroy
-    flash[:notice] = "Destroy Member successfully."
+    flash[:alert] = "Destroy Member successfully."
     redirect_to admin_members_path
   end
 
   private
+
+  def add_artist_user
+    artist_user= ArtistUser.create(:artist_id => current_artist.id, :user_id => @member.id)
+  end
+
+  def set_artist_user
+    @artist_user = ArtistUser.find(params[:id])
+  end
+
   def member_params
     params.require(:user).permit(:email, :password,:password_confirmation)
   end
