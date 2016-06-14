@@ -10,7 +10,7 @@
 	     <% @content_resources.each do |content_resource| %>
 	     <tr class="active">
 	          <td><%= image_tag content_resource.content_resource.photo.url(:thumb) %></td>
-
 	          <% end %>
 	</tbody>
 </table>
+<%= link_to 'Back',  artist_data_item_content_items_path,:class => "btn btn-primary" %>

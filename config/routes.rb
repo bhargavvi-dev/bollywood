@@ -7,9 +7,8 @@ Rails.application.routes.draw do
   get '/admin' => 'admin/data_items#index'
   
   namespace :admin do
-    resources :artists
     resources :members
-
+    #resources :artists
     resources :data_items do
       resources :content_items do
         resources :content_resources
@@ -17,13 +16,12 @@ Rails.application.routes.draw do
     end    
   end 
 
-
   resources :artists do
      resources :data_items do
        resources :content_items do
         resources :content_resources
-  end
-  end     
+      end
+    end     
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

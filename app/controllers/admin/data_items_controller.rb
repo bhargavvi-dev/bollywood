@@ -1,13 +1,13 @@
 class Admin::DataItemsController <  ApplicationController
 
 
-	def index 
+	def index
     if user_signed_in?   
-    @data_items = current_artist.data_items
-  else
-    redirect_to user_session_path
+      @data_items = current_artist.data_items
+    else
+      redirect_to user_session_path
+    end
   end
-end
 
 	def new
     @data_item = DataItem.new
@@ -41,6 +41,7 @@ end
     	render 'edit'
   	end
   end
+  
   def destroy
   	@data_item = current_artist.data_items.find(params[:id])
   	@data_item.destroy

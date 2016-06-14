@@ -27,20 +27,21 @@ class Admin::MembersController < ApplicationController
  end  
  
  def update
-    @member=@artist_user.user
+  @member=@artist_user.user
     if @member.update(member_params)
       flash[:notice] = "Member updated"
       redirect_to admin_members_path
     else
       render 'edit'
     end
-  end
-  def destroy
-    @member=@artist_user.user
-    @member.destroy
-    flash[:alert] = "Destroy Member successfully."
-    redirect_to admin_members_path
-  end
+ end
+  
+ def destroy
+  @member=@artist_user.user
+  @member.destroy
+  flash[:alert] = "Destroy Member successfully."
+  redirect_to admin_members_path
+ end
 
   private
 
