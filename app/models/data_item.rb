@@ -2,7 +2,7 @@ class DataItem < ActiveRecord::Base
   belongs_to :artist
   has_many :content_items
 
-  self.inheritance_column = :type
+   self.inheritance_column = :type
 
    scope :news, -> { where(type: 'News') }
    scope :event, -> { where(type: 'Event') }

@@ -1,0 +1,16 @@
+<h1>Content Resource</h1>
+
+<table class="table table-hover">
+	<thead>
+	   <tr class="info">
+	      <th>Photo</th>
+	   </tr>
+    </thead>
+	<tbody>
+	     <% @content_resources.each do |content_resource| %>
+	     <tr class="active">
+	          <td><%= image_tag content_resource.content_resource.photo.url(:thumb) %></td>
+
+	          <% end %>
+	</tbody>
+</table>
