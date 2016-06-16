@@ -1,26 +1,28 @@
-<div class="panel panel-info">
-  
-  <div class="panel-heading">
-    <h1>Data Item List</h1>
-  </div>
 
-<table class="table table-hover" id="myTable">
+<table class="table table-hover" id="table_id">
   <thead>
       <tr class="info">
         <th>Title</th>
-        <th>Type</th>
-        <th>Is_active</th>
       </tr>
   </thead>
   <tbody>
      <% @data_items.each do |d| %>
       <tr class="active">
          <td><%= link_to d.title, artist_data_item_content_items_path(@artist.id,d.id) %></td>
-         <td><%= d.type %></td>
-         <td><%= d.is_active %></td>
       </tr>
     <% end %>
+    <!-- <%= link_to "Event", artist_data_items_path(:type=>"Event"),:class => "btn btn-primary" %>&nbsp;&nbsp;
+     <%= link_to "News", artist_data_items_path(:type=>"News"),:class => "btn btn-primary" %>&nbsp;&nbsp;
+      <%= link_to "Photo Gallery", artist_data_items_path(:type=>"Photo_gallery"),:class => "btn btn-primary" %>-->
+      
+  <div >
+    <form > 
+      <%= select("data_item", "type", DataItem.types)   %>
+    <input type="submit" value="Filter" />
+  </form>
+</div>
+
   </tbody>
 </table>
-</div>
+
 <%= link_to 'Back',  artists_path,:class => "btn btn-primary" %>

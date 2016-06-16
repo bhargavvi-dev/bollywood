@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160609101939) do
+ActiveRecord::Schema.define(version: 20160616054357) do
 
   create_table "artist_users", force: :cascade do |t|
     t.integer  "artist_id"
@@ -59,10 +59,10 @@ ActiveRecord::Schema.define(version: 20160609101939) do
   create_table "content_resources", force: :cascade do |t|
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
+    t.string   "media_file_name"
+    t.string   "media_content_type"
+    t.integer  "media_file_size"
+    t.datetime "media_updated_at"
   end
 
   create_table "data_items", force: :cascade do |t|

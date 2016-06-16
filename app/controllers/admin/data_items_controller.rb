@@ -1,55 +1,49 @@
 class Admin::DataItemsController <  ApplicationController
 
+  before_filter :authenticate_user!
+  before_action :set_data_item, only: [:show, :edit, :update, :destroy]
 
-	def index
-    if user_signed_in?   
+  def index
       @data_items = current_artist.data_items
-    else
-      redirect_to user_session_path
-    end
   end
 
-	def new
-    @data_item = DataItem.new
+  def new
+    @data_item = current_artist.data_items.new
   end
-
-  def edit
-  	@data_item = current_artist.data_items.find(params[:id])
-  end
-
-  def show
-  	@data_item = current_artist.data_items.find(params[:id])
-  end
-
   def create
     @data_item = current_artist.data_items.new(data_item_params)
-  
     if @data_item.save
-      flash[:success] = "Data Item Added to #{current_artist.real_name}"
-      redirect_to admin_data_item_path(@data_item)
+      redirect_to admin_data_item_path(@data_item), :success => "Data Item Added to #{current_artist.real_name}"
     else
       render 'new'  
     end
   end
 
   def update
-  	@data_item = current_artist.data_items.find(params[:id])
   	if @data_item.update(data_item_params)
-      flash[:notice] = "Data Item updated"
-    	redirect_to admin_data_item_path(@data_item)
+      redirect_to admin_data_item_path(@data_item),:notice => "Data Item updated"
   	else
     	render 'edit'
   	end
   end
   
   def destroy
-  	@data_item = current_artist.data_items.find(params[:id])
-  	@data_item.destroy
-    flash[:alert] = "Data Item Deleted"
-  	redirect_to admin_data_items_path
+  	@data_item.destroy 
+  	redirect_to admin_data_items_path,:alert => "Data Item Deleted"
 	end
+  def edit
+  end
+
+  def show    
+  end
+
+
 
   private
+   
+   def set_data_item
+    @data_item = current_artist.data_items.find(params[:id])  
+   end 
  
    def data_item_params
      params.require(:data_item).permit(:type, :title, :is_active, :artist_id)

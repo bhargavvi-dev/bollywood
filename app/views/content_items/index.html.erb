@@ -1,15 +1,8 @@
-<div class="panel panel-info">
-  
-  <div class="panel-heading">
-    <h1>Content:- <%= @data_item.title %></h1>
-  </div>
-
-<table class="table table-hover" id="myTable">
+<table class="table table-hover" id="table_id">
   <thead>
      <tr class="info">
   	    <th>Title</th>
   	    <th>Description</th>
-        <th>Photo</th>
   	 </tr>
   </thead>   
   <tbody>
@@ -23,5 +16,4 @@
     <% end %>
   </tbody>
 </table>
-</div>
 <%= link_to 'Back',  artist_data_items_path,:class => "btn btn-primary" %>

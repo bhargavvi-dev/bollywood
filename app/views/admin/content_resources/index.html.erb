@@ -1,22 +1,30 @@
-<h1>Content Resource</h1>
+<h1>Resources</h1>
 
-<table class="table table-hover">
+<%= link_to 'New Content Resource',  new_admin_data_item_content_item_content_resource_path , :class => "btn btn-primary"%>
+<table class="table table-hover" id="table_id">
 	<thead>
-	   <tr class="info">
-	      <th>Photo</th>
+	   <tr>
+	      <th>Media</th>
+	      <th>Delete</th>
 	   </tr>
     </thead>
 	<tbody>
-	     <% @content_resources.each do |content_resource| %>
+	   <% @content_resources.each do |content_resource| %>
 	     <tr class="active">
-	          <td><%= image_tag content_resource.content_resource.photo.url(:thumb) %></td>
-	   
-	      <td><%= link_to image_tag("/delete.png"),admin_data_item_content_item_content_resource_path(@data_item,@content_item,content_resource),
+	          <td>
+	          <% if content_resource.is_image_type?%>
+	          <%= image_tag content_resource.media.url(:res960), style: "max-width: 45%;" %>
+	          <%else%>
+	        	<%= video_tag content_resource.media.url,controls: true, style: "max-width: 45%;"%>  
+	          <% end %>
+	          </td>
+	           <td><%= link_to image_tag("/delete.png"),admin_data_item_content_item_content_resource_path(@data_item,@content_item,content_resource),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
-                </tr>
-	     
-              <% end %>
+             
+			 </tr>
+       <% end %>
+           
 	</tbody>
 </table>
 <%= link_to 'New Content Resource',  new_admin_data_item_content_item_content_resource_path , :class => "btn btn-primary"%>

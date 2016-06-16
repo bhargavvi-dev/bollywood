@@ -16,12 +16,12 @@
    <table class="table table-hover">
       <tr>
       <td><%= f.label :Type %></td>
-      <td><%= f.select :type, ["News","Event","Photo_gallery"] %></td>
+      <td><%= f.select :type, ["News","Event","Photo_gallery"] ,required: true%></td>
     </tr>
 
     <tr>
         <td><%= f.label :Title %></td>
-        <td><%= f.text_field :title %></td>
+        <td><%= f.text_field :title ,required: true%></td>
       </tr>
 
       <tr>

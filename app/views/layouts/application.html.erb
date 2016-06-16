@@ -33,10 +33,13 @@
         <span class="icon-bar"></span>
       </button>
       <%= link_to "Bollywood", root_path, class: "navbar-brand" %>
+      <% if user_signed_in? %>
       <ul class="nav navbar-nav">
       <li class="<%= 'active' if current_page?(admin_data_items_path) %>">
       <%= link_to 'Show Data Items',  admin_data_items_path%></li>
       <li class="<%= 'active' if current_page?(admin_members_path) %>"><%= link_to 'Show Member',  admin_members_path%></li>
+        </ul>
+    <% end %>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -61,15 +64,11 @@
   </div><!-- /.container-fluid -->
 </nav>
 
- <div class="container">
-     <% flash.each do |type, message| %>
-  <div class="alert <%= bootstrap_class_for(type) %> fade in">
-    <button class="close" data-dismiss="alert">×</button>
-    <%= message %>
-  </div>
-<% end %>
-      <%= yield %>
-     
-    </div>
+     <div class="container">
+         <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, class: "alert alert-info" %>
+        <% end %>
+  <%= yield %>
+</div>
 </tbody>
 </html>

@@ -1,52 +1,46 @@
 class Admin::MembersController < ApplicationController
   
   before_filter :authenticate_user!
-  before_action :set_artist_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
     
  def index
-    @members = current_artist.artist_users.where(:is_admin => false)
+    @members = current_artist.users.where("artist_users.is_admin = ?", false)
  end
  
  def new
-  	@member = User.new
- end
- 
- def edit
-    @member=@artist_user.user
+  	@member = current_artist.users.new
  end
 
  def create
-  @member = User.new(member_params)
+  @member = current_artist.users.new(member_params)
     if @member.save
-      flash[:success] = "Member Added Successfully."
-      artist_user= ArtistUser.create(:artist_id => current_artist.id, :user_id => @member.id)
-    	redirect_to admin_members_path
+      current_artist.artist_users.create(:user_id => @member.id)
+    	redirect_to admin_members_path, :success => "Member Added Successfully."
   	else
     	render 'new'
   	end
  end  
  
- def update
-  @member=@artist_user.user
+ def update  
     if @member.update(member_params)
-      flash[:notice] = "Member updated"
-      redirect_to admin_members_path
+      redirect_to admin_members_path, :notice => "Member updated"
     else
       render 'edit'
     end
  end
   
  def destroy
-  @member=@artist_user.user
-  @member.destroy
-  flash[:alert] = "Destroy Member successfully."
-  redirect_to admin_members_path
+  @member.destroy  
+  redirect_to admin_members_path, :notice => "Destroy Member successfully."
+ end
+
+ def edit    
  end
 
   private
 
-  def set_artist_user
-    @artist_user = ArtistUser.find(params[:id])
+  def set_user
+    @member = current_artist.users.find(params[:id])
   end
 
   def member_params

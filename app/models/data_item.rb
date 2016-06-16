@@ -7,10 +7,10 @@ class DataItem < ActiveRecord::Base
    scope :news, -> { where(type: 'News') }
    scope :event, -> { where(type: 'Event') }
    scope :photo_gallery, -> { where(type: 'Photo_gallery') }
+   scope :is_active, -> { where('is_active = ?',true) }
 
    validates_presence_of :title
-
-
+   
   class << self
     def types
       %w(News Event Photo_gallery)
