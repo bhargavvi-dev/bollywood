@@ -7,8 +7,8 @@ class ContentResource < ActiveRecord::Base
 
    def check_file_type
     if is_image_type?
-      { :res2048 => { :geometry => "2048x2048>",processors: [:thumbnail, :squish_to]},
-      	:res960 =>  { :geometry => "960x960>" ,processors: [:thumbnail, :squish_to]}
+      { :medium => { :geometry => "2048x2048>",processors: [:thumbnail, :squish_to]},
+      	:thumb =>  { :geometry => "960x960>" ,processors: [:thumbnail, :squish_to]}
       }
     elsif is_video_type?
       {

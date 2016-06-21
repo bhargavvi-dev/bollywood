@@ -31,6 +31,8 @@ gem "cocaine"
 gem 'delayed_paperclip'
 gem 'sidekiq'
 gem 'redis'
+gem 'delayed_job_active_record'
+gem 'ffmpeg'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

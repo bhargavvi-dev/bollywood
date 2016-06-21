@@ -13,7 +13,7 @@
 	     <tr class="active">
 	          <td>
 	          <% if content_resource.is_image_type?%>
-	          <%= image_tag content_resource.media.url(:res960), style: "max-width: 45%;" %>
+	          <%= image_tag content_resource.media.url(:thumb), style: "max-width: 45%;" %>
 	          <%else%>
 	        	<%= video_tag content_resource.media.url,controls: true, style: "max-width: 45%;"%>  
 	          <% end %>
