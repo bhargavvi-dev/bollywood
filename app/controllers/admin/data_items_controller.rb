@@ -20,9 +20,10 @@ class Admin::DataItemsController <  ApplicationController
     @data_item = current_artist.data_items.new(data_item_params)
     @type = @data_item.type
     if @data_item.save
-      if @type == "News"
+      case type = @type
+      when "News"
         @data_item.content_metadata_news.create(news_metadata_params)
-       elsif @type == "Event"
+       when"Event"
         @data_item.content_metadata_events.create(events_metadata_params)
        else
         @data_item.content_metadata_photo_galleries.create(photoes_metadata_params) 
@@ -35,14 +36,15 @@ class Admin::DataItemsController <  ApplicationController
 
   def update
     if @data_item.update(data_item_params)
-      if @type == "News"
-        @newsmetadata.update(news_metadata_params)
-      elsif @type == "Event"
-        @eventmetadata.update(events_metadata_params)
-      else
-        @photometadata.update(photoes_metadata_params)
-      end       
-        redirect_to admin_data_item_path(@data_item),:notice => "Data Item updated"
+       case type = @type
+        when "News"
+          @newsmetadata.update(news_metadata_params)
+        when "Event"
+          @eventmetadata.update(events_metadata_params)
+        else
+          @photometadata.update(photoes_metadata_params)
+        end   
+    redirect_to admin_data_item_path(@data_item),:notice => "Data Item updated"
   	else
     	render 'edit'
   	end
@@ -64,11 +66,12 @@ class Admin::DataItemsController <  ApplicationController
    end
 
    def set_metadata
-      if @type == "News"
+      case type = @type
+      when "News"
         @newsmetadata = ContentMetadataNews.find_by(data_item_id: params[:id])
-      elsif @type == "Event"
+      when "Event"
         @eventmetadata = ContentMetadataEvent.find_by(data_item_id: params[:id]) 
-      else
+      when
         @photometadata = ContentMetadataPhotoGallery.find_by(data_item_id: params[:id])
       end
     end

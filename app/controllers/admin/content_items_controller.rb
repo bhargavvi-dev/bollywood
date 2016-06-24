@@ -13,8 +13,8 @@ class Admin::ContentItemsController < ApplicationController
   end
 
   def create
+
     @newsmetadata = @data_item.content_metadata_news.find_by(params[:data_item_id])
-    
     @content_item = @data_item.content_items.new(content_item_params)
     if @content_item.save
       @newsmetadata.content_metadata_newsi18ns.create(language_code: news_metadata_params["language_code"],title: content_item_params["title"])
@@ -58,6 +58,5 @@ class Admin::ContentItemsController < ApplicationController
   def news_metadata_params
    params[:content_item].require(:content_metadata_newsi18n).permit(:language_code) 
   end 
-
-end
+end 
 
