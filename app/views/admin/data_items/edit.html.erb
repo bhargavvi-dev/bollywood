@@ -1,3 +1,9 @@
-<h1>Edit Data Item</h1>
-<%= render 'form' %>
+<h1>Edit <%=@type%> Item</h1>
+<% if @type == "Event" %>
+<%= render 'events' %>
+<% elsif @type == "Photo_gallery" %>
+<%= render 'photo' %>
+<% else %>
+<%= render 'news' %>
+<% end %>
 <%= link_to 'Back', :back, :class => "btn btn-primary" %>

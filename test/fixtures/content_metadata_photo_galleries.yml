@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content_item_id: 
+  author: MyString
+  dimensions: MyString
+
+two:
+  content_item_id: 
+  author: MyString
+  dimensions: MyString

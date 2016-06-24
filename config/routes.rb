@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   end
   
   get '/admin' => 'admin/data_items#index'
+  get '/change_locale/:locale', to: 'settings#change_locale', as: :change_locale
   
   namespace :admin do
     resources :members

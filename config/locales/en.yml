@@ -18,6 +18,15 @@
 #
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  data_items: "Add Data Items"
+  data_member: "Show Data Member"
+  member: "Show Member"
+  bollywood: "Bollywood"
+  profile: "Profile"
+  title: "Title"
+  type: "Type"
+  is_active: "Active"
+  show: "Show"
+  edit: "Edit"
+  delete: "Delete"  

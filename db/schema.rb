@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160616054357) do
+ActiveRecord::Schema.define(version: 20160623115849) do
 
   create_table "artist_users", force: :cascade do |t|
     t.integer  "artist_id"
@@ -55,6 +55,62 @@ ActiveRecord::Schema.define(version: 20160616054357) do
   end
 
   add_index "content_items", ["data_item_id"], name: "index_content_items_on_data_item_id"
+
+  create_table "content_metadata_eventi18ns", force: :cascade do |t|
+    t.integer  "content_metadata_event_id"
+    t.string   "title"
+    t.string   "language_code"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "content_metadata_events", force: :cascade do |t|
+    t.integer  "data_item_id"
+    t.string   "organisers"
+    t.string   "location"
+    t.date     "date"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "content_metadata_events", ["data_item_id"], name: "index_content_metadata_events_on_data_item_id"
+
+  create_table "content_metadata_news", force: :cascade do |t|
+    t.integer  "data_item_id"
+    t.string   "author"
+    t.string   "publisher"
+    t.date     "issue_date"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "content_metadata_news", ["data_item_id"], name: "index_content_metadata_news_on_data_item_id"
+
+  create_table "content_metadata_newsi18ns", force: :cascade do |t|
+    t.integer  "content_metadata_news_id"
+    t.string   "title"
+    t.string   "language_code"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "content_metadata_photo_galleries", force: :cascade do |t|
+    t.integer  "data_item_id"
+    t.string   "author"
+    t.string   "dimensions"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "content_metadata_photo_galleries", ["data_item_id"], name: "index_content_metadata_photo_galleries_on_data_item_id"
+
+  create_table "content_metadata_photo_galleryi18ns", force: :cascade do |t|
+    t.integer  "content_metadata_photo_gallery_id"
+    t.string   "title"
+    t.string   "language_code"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+  end
 
   create_table "content_resources", force: :cascade do |t|
     t.datetime "created_at",         null: false

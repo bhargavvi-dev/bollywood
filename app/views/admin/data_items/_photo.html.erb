@@ -1,0 +1,48 @@
+<%= form_for([:admin , @data_item]) do |f| %>
+<% if @data_item.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@data_item.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @data_item.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+   <table class="table table-hover">
+   <!--    <tr>
+      <td><%= f.label :Type %></td>
+      <td><%= f.select :type, ["News","Event","Photo_gallery"] ,required: true%></td>
+    </tr>
+ --><td><%= f.hidden_field :type , :value => "Photo_gallery"%></td>
+    <tr>
+        <td><%= f.label :photo_Title %></td>
+        <td><%= f.text_field :title ,required: true%></td>
+      </tr>
+      <%= f.fields_for @photometadata do |d| %>
+        <tr>
+        <td><%= d.label :author %></td>
+        <td><%= d.text_field :author ,required: true%></td>
+        </tr>
+        <tr>
+        <td><%= d.label :dimensions %></td>
+        <td><%= d.text_field :dimensions ,required: true%></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td><%= f.label :Is_active %></td>
+        <td><%= f.check_box :is_active %></td>
+      </tr>
+
+      <%# f.hidden_field :artist_id, :value => params[:id] %><br/>
+
+      <tr>
+         <td rowspan="2" align="center"><%= f.submit %></td>
+    </tr>
+   </table>
+
+<%end%>

@@ -33,6 +33,7 @@ gem 'sidekiq'
 gem 'redis'
 gem 'delayed_job_active_record'
 gem 'ffmpeg'
+gem 'rails-i18n', '~> 4.0.0' # for Rails 4
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

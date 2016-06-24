@@ -14,15 +14,29 @@
   <% end %>
 
    <table class="table table-hover">
-      <tr>
+   <!--    <tr>
       <td><%= f.label :Type %></td>
       <td><%= f.select :type, ["News","Event","Photo_gallery"] ,required: true%></td>
     </tr>
-
+ --><td><%= f.hidden_field :type , :value => "Event"%></td>
     <tr>
-        <td><%= f.label :Title %></td>
+        <td><%= f.label :Event_Title %></td>
         <td><%= f.text_field :title ,required: true%></td>
       </tr>
+      <%= f.fields_for @eventmetadata do |d| %>
+        <tr>
+        <td><%= d.label :organisers %></td>
+        <td><%= d.text_field :organisers ,required: true%></td>
+        </tr>
+        <tr>
+        <td><%= d.label :location %></td>
+        <td><%= d.text_field :location ,required: true%></td>
+        </tr>
+        <tr>
+        <td><%= d.label :Date %></td>
+        <td><%= d.date_field :date ,required: true%></td>
+        </tr>
+      <% end %>
 
       <tr>
         <td><%= f.label :Is_active %></td>

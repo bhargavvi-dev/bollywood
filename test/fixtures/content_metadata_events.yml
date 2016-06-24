@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content_item_id: 
+  organisers: MyString
+  location: MyString
+  date: 2016-06-22
+
+two:
+  content_item_id: 
+  organisers: MyString
+  location: MyString
+  date: 2016-06-22

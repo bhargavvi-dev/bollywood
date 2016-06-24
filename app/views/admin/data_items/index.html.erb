@@ -2,12 +2,12 @@
 <table class="table table-hover" id="table_id">
 <thead>
    <tr>
-	    <th>Title</th>
-	    <th>Type</th>
-	    <th>Is_active</th>
-      <th>Show</th>
-      <th>Edit</th>
-      <th>Delete</th>
+	    <th><%=t('title')%></th>
+	    <th><%=t('type')%></th>
+	    <th><%=t('is_active')%></th>
+      <th><%=t('show')%></th>
+      <th><%=t('edit')%></th>
+      <th><%=t('delete')%></th>
    </tr>
 </thead>
 <tbody>
@@ -25,4 +25,4 @@
   <% end %>
   </tbody>
 </table>
-<%= link_to 'New Data Items',  new_admin_data_item_path,:class => "btn btn-primary" %>
+<%= link_to t('data_items'),  new_admin_data_item_path,:class => "btn btn-primary" %>

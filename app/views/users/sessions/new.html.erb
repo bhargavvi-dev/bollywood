@@ -14,6 +14,7 @@
             <div class="card-body">
 
               <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form floating-label'}) do |f| %>
+          
                 <div class="form-group <%= (resource.errors["email"].any? ? "has-error" : '') %>">
                   <%= f.label :email %>
                   <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: 'off', value: '' %>
