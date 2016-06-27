@@ -3,7 +3,7 @@ class Admin::DataItemsController <  ApplicationController
   before_filter :authenticate_user!
   before_action :set_data_item, only: [:show, :edit, :update, :destroy]
   before_action :set_content_type, only: [:show,:edit,:update,:destroy]
-  before_action :set_metadata,only: [:show,:update,:edit]
+  before_action :set_metadata,only: [:index,:show,:update,:edit]
   
   def index
       @data_items = current_artist.data_items
@@ -14,14 +14,14 @@ class Admin::DataItemsController <  ApplicationController
     @newsmetadata = ContentMetadataNews.new
     @eventmetadata = ContentMetadataEvent.new
     @photometadata = ContentMetadataPhotoGallery.new
-
   end
+  
   def create
     @data_item = current_artist.data_items.new(data_item_params)
     @type = @data_item.type
     if @data_item.save
       case type = @type
-      when "News"
+       when "News"
         @data_item.content_metadata_news.create(news_metadata_params)
        when"Event"
         @data_item.content_metadata_events.create(events_metadata_params)

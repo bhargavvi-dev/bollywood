@@ -8,12 +8,3 @@ class DataItemsController < ApplicationController
   		end
 	end
 end
-
-
-
-
-
-
-
-		
-	

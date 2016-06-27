@@ -14,8 +14,8 @@
   <% end %>
 
    <table class="table table-hover">
-
- <%= f.fields_for @newsmetadata do |d| %>
+<% @data = (@eventmetadata or @newsmetadata or @photometadata) %>
+ <%= f.fields_for @data do |d| %>
        <tr>
        <td><%= d.label :language_code %></td>
        <td><%= d.select :language_code, ["en","ru"] ,required: true%></td>
