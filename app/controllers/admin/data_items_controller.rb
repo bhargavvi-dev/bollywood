@@ -20,7 +20,7 @@ class Admin::DataItemsController <  ApplicationController
     @data_item = current_artist.data_items.new(data_item_params)
     @type = @data_item.type
     if @data_item.save
-      case type = @type
+      case @type
        when "News"
         @data_item.content_metadata_news.create(news_metadata_params)
        when"Event"
@@ -36,7 +36,7 @@ class Admin::DataItemsController <  ApplicationController
 
   def update
     if @data_item.update(data_item_params)
-       case type = @type
+       case @type
         when "News"
           @newsmetadata.update(news_metadata_params)
         when "Event"

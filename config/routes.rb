@@ -3,12 +3,14 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {sessions: "users/sessions"}
     devise_scope :user do
   end
+  post 'visitors/contact', to: 'visitors#contact'
+  root 'visitors#index'  
   
-  get '/admin' => 'admin/data_items#index'
   get '/change_locale/:locale', to: 'settings#change_locale', as: :change_locale
   
   namespace :admin do
-    resources :members
+    get '/' => 'admin/data_items#index'
+    resources :members 
     #resources :artists
     resources :data_items do
       resources :content_items do
@@ -86,5 +88,5 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  root'artists#index'
+  #root'artists#index'
 end

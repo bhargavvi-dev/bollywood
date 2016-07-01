@@ -10,7 +10,7 @@ class Admin::ContentItemsController < ApplicationController
 	def new
     @content_item = @data_item.content_items.new
     if @data_item.content_metadata_news.present?
-      @newsmetadata = ContentMetadataNewsi18n.new
+       @newsmetadata = ContentMetadataNewsi18n.new
     elsif @data_item.content_metadata_events.present?
       @eventmetadata = ContentMetadataEventi18n.new
     else
@@ -46,21 +46,18 @@ class Admin::ContentItemsController < ApplicationController
   end
 
   def destroy
-  	@content_item.destroy
- 		redirect_to admin_data_item_content_items_path, :alert => "Content Item Deleted"
-  end
-
-  def edit
-    if @data_item.content_metadata_news.present?
-      news = @data_item.content_metadata_news.find_by(params[:data_item_id])
-      @newsmetadata= news.content_metadata_newsi18ns.find_by(params[:content_metadata_newsi18n_id])  
-    elsif @data_item.content_metadata_events.present?
-      event = @data_item.content_metadata_events.find_by(params[:data_item_id])
-      @eventmetadata = event.content_metadata_eventi18ns.find_by(params[:content_metadata_eventi18n_id])  
-    else
-      photo = @data_item.content_metadata_photo_galleries.find_by(params[:data_item_id])
-      @photometadata = photo.content_metadata_photo_galleryi18ns.find_by(params[:content_metadata_photo_galleryi18n_id])  
-    end
+  	@content_item.destroy 
+    redirect_to admin_data_item_content_items_path, :alert => "Content Item Deleted"
+    # if @data_item.content_metadata_news.present?
+    #   news = @data_item.content_metadata_news.find_by(params[:data_item_id])
+    #   @newsmetadata= news.content_metadata_newsi18ns.find_by(params[:content_metadata_newsi18n_id])  
+    # elsif @data_item.content_metadata_events.present?
+    #   event = @data_item.content_metadata_events.find_by(params[:data_item_id])
+    #   @eventmetadata = event.content_metadata_eventi18ns.find_by(params[:content_metadata_eventi18n_id])  
+    # else
+    #   photo = @data_item.content_metadata_photo_galleries.find_by(params[:data_item_id])
+    #   @photometadata = photo.content_metadata_photo_galleryi18ns.find_by(params[:content_metadata_photo_galleryi18n_id])  
+    # end
   end
   def show
   end
